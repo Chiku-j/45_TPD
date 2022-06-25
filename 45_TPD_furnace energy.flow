@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\chinm\\\\Downloads\\\\Composition_45TPD_Flint_I.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Composition_45TPD_Flint_I.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Composition_45TPD_Flint_I.csv\"]\n  destination_frame: \"Composition_45TPD_Flint_I.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 25\n  single_quotes: false\n  column_names: [\"Date\",\"SiO2\",\"Al2O3\",\"Fe2O3\",\"B2O3\",\"CaO\",\"MgO\",\"BaO\",\"Na2O\",\"K2O\",\"SO3\",\"F2\",\"TiO2\",\"Total\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"DPR Draw\",\"Contidrain Draw\",\"Total Draw\",\"Cullet %\",\"Melter NG consumption / Day\",\"melter Boosting KWH/day\",\"Calorific Vallue of NG\",\"SFC\\nK.Cal/KG\",\"Oxygen consumption /day\"]\n  column_types: [\"Time\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"Composition_45TPD_Flint_I.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist splitFrame, \"Composition_45TPD_Flint_I.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"Composition_45TPD_Flint_I.hex\", [0.75], [\"frame_0.750\",\"frame_0.250\"], 766021"
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"Composition_45TPD_Flint_I.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-70e3d662-087a-46a1-8525-1ac9b7792d35\",\"training_frame\":\"frame_0.750\",\"validation_frame\":\"frame_0.250\",\"nfolds\":0,\"response_column\":\"SFC\\nK.Cal/KG\",\"ignored_columns\":[\"Date\",\"Total\",\"CaO+MgO+BaO\",\"Na2O+K2O\",\"DPR Draw\",\"Contidrain Draw\",\"Total Draw\",\"Cullet %\",\"Melter NG consumption / Day\",\"melter Boosting KWH/day\",\"Calorific Vallue of NG\",\"SFC\\nK.Cal/KG\",\"Oxygen consumption /day\"],\"ignore_const_cols\":true,\"ntrees\":25,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":-1,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-70e3d662-087a-46a1-8525-1ac9b7792d35\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-70e3d662-087a-46a1-8525-1ac9b7792d35\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-70e3d662-087a-46a1-8525-1ac9b7792d35\", frame: \"Composition_45TPD_Flint_I.hex\", predictions_frame: \"prediction-c33f4b24-c170-4291-aa21-9f3a7d1d9366\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-7b96e3d5-5a24-4e1a-b79a-272e7f501717\",\"model_id\":\"drf-70e3d662-087a-46a1-8525-1ac9b7792d35\",\"frame_id\":\"Composition_45TPD_Flint_I.hex\",\"cols\":\"\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "cs",
+      "input": "getPartialDependence \"pdp-7b96e3d5-5a24-4e1a-b79a-272e7f501717\""
+    }
+  ]
+}

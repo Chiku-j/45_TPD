@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\chinm\\\\Downloads\\\\Full_Flat_File_Flint.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Full_Flat_File_Flint.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Full_Flat_File_Flint.csv\"]\n  destination_frame: \"Full_Flat_File_Flint1.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 57\n  single_quotes: false\n  column_names: [\"\",\"Furnace Pressure Actual\",\"Distributor Temp Actual\",\"Melter oil Flow Actual\",\"Glass Level  Actual\",\"B4 A High Pressure Actual\",\"B4 A High Pressure Set Point\",\"B5 High Pressure Actual\",\"B5 High Pressure Set Point\",\"B6 High Pressure Actual\",\"B6 High Pressure Set Point\",\"B4 A Low Pressure Actual\",\"B4 A Low Pressure Set Point\",\"B4 B Low Pressure Actual\",\"B4 B Low Pressure Set Point\",\"B5 Low Pressure Actual\",\"B5 Low Pressure Set Point\",\"B6 Low Pressure Actual\",\"B6 Low Pressure Set Point\",\"Header Gas Pressure Actual\",\"Recuprator Left Bottom temp Actual\",\"Recuprator Left Middle temp Actual\",\"Recuprator Left top temp Actual\",\"Recuprator Right Bottom temp Actual\",\"Recuprator Right Middle temp Actual\",\"Recuprator Right top temp Actual\",\"Row Key\",\"Total cold air flow  Actual\",\"B4 A front bottom temp Actual\",\"B4 A Front Top temp Actual\",\"B4 A Front Top temp Set Point\",\"B4 B front bottom temp Actual\",\"B4 B Front Top temp Actual\",\"B4 B Front Top temp Set Point\",\"B4 Middle bottom temp Actual\",\"B4 Rear Bottom temp Actual\",\"B4 Rear Top temp Actual\",\"B5 Front Bottom temp Actual\",\"B5 front Top temp Actual\",\"B5 Rear Top temp Actual\",\"B5 Rear Top temp Set Point\",\"B6 Front Bottom Actual\",\"B6 Rear Bottom Actual\",\"B6 Rear Top temp Actual\",\"B6 Rear Top temp Set Point\",\"Melter Bottom 1 temp Actual\",\"Melter Bottom 2 temp Actual\",\"Melter Bottom 3 temp Actual\",\"Melter Bottom 4 temp Actual\",\"Melter Bottom 5 temp Actual\",\"Melter Crown 1 temp Actual\",\"Melter Crown 2 temp Actual\",\"Total gas flow Actual\",\"Total hot air Actual\",\"Thermocouple stack ( Chimney) left Actual\",\"DateTime\",\"Air to fuel ratio\"]\n  column_types: [\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Time\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 138600\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"Full_Flat_File_Flint1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist splitFrame, \"Full_Flat_File_Flint1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"Full_Flat_File_Flint1.hex\", [0.67], [\"Full_Flat_File_Flint1.hex_0.670\",\"Full_Flat_File_Flint1.hex_0.330\"], 787058"
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"Full_Flat_File_Flint1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-c3c5733e-9986-480c-ad8d-0ccfd063ddc7\",\"training_frame\":\"Full_Flat_File_Flint1.hex_0.670\",\"validation_frame\":\"Full_Flat_File_Flint1.hex_0.330\",\"nfolds\":0,\"response_column\":\"Air to fuel ratio\",\"ignored_columns\":[\"C1\",\"Furnace Pressure Actual\",\"Distributor Temp Actual\",\"B4 A High Pressure Actual\",\"B4 A High Pressure Set Point\",\"B5 High Pressure Actual\",\"B5 High Pressure Set Point\",\"B6 High Pressure Actual\",\"B6 High Pressure Set Point\",\"B4 A Low Pressure Actual\",\"B4 A Low Pressure Set Point\",\"B4 B Low Pressure Actual\",\"B4 B Low Pressure Set Point\",\"B5 Low Pressure Actual\",\"B5 Low Pressure Set Point\",\"B6 Low Pressure Actual\",\"B6 Low Pressure Set Point\",\"Header Gas Pressure Actual\",\"Recuprator Left Middle temp Actual\",\"Recuprator Left top temp Actual\",\"Recuprator Right Bottom temp Actual\",\"Recuprator Right Middle temp Actual\",\"Recuprator Right top temp Actual\",\"Row Key\",\"Total cold air flow  Actual\",\"B4 A front bottom temp Actual\",\"B4 A Front Top temp Set Point\",\"B4 B front bottom temp Actual\",\"B4 B Front Top temp Actual\",\"B4 B Front Top temp Set Point\",\"B4 Middle bottom temp Actual\",\"B4 Rear Bottom temp Actual\",\"B4 Rear Top temp Actual\",\"B5 Front Bottom temp Actual\",\"B5 Rear Top temp Actual\",\"B5 Rear Top temp Set Point\",\"B6 Front Bottom Actual\",\"B6 Rear Bottom Actual\",\"Total gas flow Actual\",\"Total hot air Actual\",\"Thermocouple stack ( Chimney) left Actual\",\"DateTime\",\"Air to fuel ratio\"],\"ignore_const_cols\":true,\"ntrees\":25,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":-1,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-c3c5733e-9986-480c-ad8d-0ccfd063ddc7\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-c3c5733e-9986-480c-ad8d-0ccfd063ddc7\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-c3c5733e-9986-480c-ad8d-0ccfd063ddc7\", frame: \"Full_Flat_File_Flint1.hex\", predictions_frame: \"prediction-8e8d3764-8f3f-4473-a3ab-0ade4a081ce2\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-1a138a13-5df6-4c3f-911a-26eb526e2d06\",\"model_id\":\"drf-c3c5733e-9986-480c-ad8d-0ccfd063ddc7\",\"frame_id\":\"Full_Flat_File_Flint1.hex\",\"cols\":\"[\\\"Melter oil Flow Actual\\\",\\\"Glass Level  Actual\\\",\\\"Recuprator Left Bottom temp Actual\\\",\\\"B4 A Front Top temp Actual\\\",\\\"B5 front Top temp Actual\\\",\\\"B6 Rear Top temp Actual\\\",\\\"B6 Rear Top temp Set Point\\\",\\\"Melter Bottom 1 temp Actual\\\",\\\"Melter Bottom 2 temp Actual\\\",\\\"Melter Bottom 3 temp Actual\\\",\\\"Melter Bottom 4 temp Actual\\\",\\\"Melter Bottom 5 temp Actual\\\",\\\"Melter Crown 1 temp Actual\\\",\\\"Melter Crown 2 temp Actual\\\",]\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "h5",
+      "input": "getPartialDependence \"pdp-1a138a13-5df6-4c3f-911a-26eb526e2d06\""
+    }
+  ]
+}

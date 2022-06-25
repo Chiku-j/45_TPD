@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "cells": [
+    {
+      "type": "cs",
+      "input": "assist"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles"
+    },
+    {
+      "type": "cs",
+      "input": "importFiles [ \"C:\\\\Users\\\\chinm\\\\Downloads\\\\Seed&GlassDensity&Cullet%_45TPD_Flint_1.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "setupParse source_frames: [ \"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Seed&GlassDensity&Cullet%_45TPD_Flint_1.csv\" ]"
+    },
+    {
+      "type": "cs",
+      "input": "parseFiles\n  source_frames: [\"nfs:\\\\C:\\\\Users\\\\chinm\\\\Downloads\\\\Seed&GlassDensity&Cullet%_45TPD_Flint_1.csv\"]\n  destination_frame: \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\"\n  parse_type: \"CSV\"\n  separator: 44\n  number_columns: 16\n  single_quotes: false\n  column_names: [\"Date\",\"B-4 SEEDS  PER 100 GMS\",\"B-5 SEEDS  PER 100 GMS\",\"B-6 SEEDS  PER 100 GMS\",\"\",\"Limit\",\"Glass Density\",\"DPR Draw\",\"Contidrain Draw\",\"Total Draw\",\"Cullet %\",\"Melter NG consumption / Day\",\"melter Boosting KWH/day\",\"Calorific Vallue of NG\",\"SFC\\nK.Cal/KG\",\"Oxygen consumption /day\"]\n  column_types: [\"Time\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\",\"Numeric\"]\n  delete_on_done: true\n  check_header: 1\n  chunk_size: 4194304\n  escapechar: undefined"
+    },
+    {
+      "type": "cs",
+      "input": "getFrameSummary \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "assist splitFrame, \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "splitFrame \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\", [0.75], [\"frame_0.750\",\"frame_0.250\"], 829571"
+    },
+    {
+      "type": "cs",
+      "input": "assist buildModel, null, training_frame: \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\""
+    },
+    {
+      "type": "cs",
+      "input": "buildModel 'drf', {\"model_id\":\"drf-64430c32-622f-48ec-88e9-00e00db21deb\",\"training_frame\":\"frame_0.750\",\"validation_frame\":\"frame_0.250\",\"nfolds\":0,\"response_column\":\"SFC\\nK.Cal/KG\",\"ignored_columns\":[\"Date\",\"C5\",\"Limit\",\"DPR Draw\",\"Contidrain Draw\",\"Total Draw\",\"Cullet %\",\"Melter NG consumption / Day\",\"melter Boosting KWH/day\",\"Calorific Vallue of NG\",\"SFC\\nK.Cal/KG\",\"Oxygen consumption /day\"],\"ignore_const_cols\":true,\"ntrees\":25,\"max_depth\":20,\"min_rows\":1,\"nbins\":20,\"seed\":-1,\"mtries\":-1,\"sample_rate\":0.632,\"score_each_iteration\":false,\"score_tree_interval\":0,\"nbins_top_level\":1024,\"nbins_cats\":1024,\"r2_stopping\":1.7976931348623157e+308,\"stopping_rounds\":0,\"stopping_metric\":\"AUTO\",\"stopping_tolerance\":0.001,\"max_runtime_secs\":0,\"col_sample_rate_per_tree\":1,\"min_split_improvement\":0.00001,\"histogram_type\":\"AUTO\",\"categorical_encoding\":\"AUTO\",\"distribution\":\"AUTO\",\"gainslift_bins\":-1,\"auc_type\":\"AUTO\",\"build_tree_one_node\":false,\"sample_rate_per_class\":[],\"binomial_double_trees\":false,\"col_sample_rate_change_per_level\":1,\"calibrate_model\":false,\"check_constant_response\":true}"
+    },
+    {
+      "type": "cs",
+      "input": "getModel \"drf-64430c32-622f-48ec-88e9-00e00db21deb\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-64430c32-622f-48ec-88e9-00e00db21deb\""
+    },
+    {
+      "type": "cs",
+      "input": "predict model: \"drf-64430c32-622f-48ec-88e9-00e00db21deb\", frame: \"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\", predictions_frame: \"prediction-55b1e494-de96-45c4-8542-6b00c7325ee2\""
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence"
+    },
+    {
+      "type": "cs",
+      "input": "buildPartialDependence {\"destination_key\":\"pdp-96c4ce34-0cad-4f19-bfbd-74c2a73ae481\",\"model_id\":\"drf-64430c32-622f-48ec-88e9-00e00db21deb\",\"frame_id\":\"Seed_GlassDensity_Cullet__45TPD_Flint_1.hex\",\"cols\":\"\",\"targets\":\"\",\"col_pairs_2dpdp\":\"\",\"nbins\":20,\"row_index\":-1}"
+    },
+    {
+      "type": "cs",
+      "input": "getPartialDependence \"pdp-96c4ce34-0cad-4f19-bfbd-74c2a73ae481\""
+    }
+  ]
+}
